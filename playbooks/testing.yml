@@ -6,8 +6,8 @@
   tasks:
 
     - name: reboot host
-      shell: sleep 10 && /sbin/shutdown -r now
-      async: 300
+      shell: sleep 5 && reboot
+      async: 1
       poll: 0
       become: true
       tags:
@@ -15,6 +15,10 @@
 
     - name: waiting for server booting up
       wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 300
       tags:
         - test_reboot
 
