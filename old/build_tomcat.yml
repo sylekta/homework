@@ -1,0 +1,36 @@
+---
+- name: tomcat
+  hosts: apps
+  gather_facts: false
+  become: true
+
+  tasks:
+  - name: (tomcat) install tomcat
+    yum:
+      name: tomcat
+      state: present
+
+  - name: (tomcat) enable service
+    service:
+      name: tomcat
+      state: started
+      enabled: yes
+
+  - name: (tomcat) create tomcat root dir
+    file:
+      path: /usr/share/tomcat/webapps/ROOT
+      state: directory
+
+  - name: (tomcat) copy index.html.j2 template to tomcat root dir
+    template:
+      src: ../templates/index.html.j2
+      dest: /usr/share/tomcat/webapps/ROOT/index.html
+      mode: 0644
+    notify:
+      - restart_tomcat
+
+  handlers:
+    - name: restart_tomcat
+      service:
+        name: tomcat
+        state: restarted

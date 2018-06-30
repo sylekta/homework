@@ -1,0 +1,10 @@
+#Call app-server role to install tomcat and copy index.html template#
+---
+- name: build_app_server
+  hosts: apps
+  gather_facts: true
+  become: true
+  roles:
+      - {name: app-servers}
+
+  
