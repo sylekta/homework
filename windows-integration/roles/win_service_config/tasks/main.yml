@@ -1,0 +1,6 @@
+---
+- name: Set service startup mode to auto and ensure it is started
+  win_service:
+    name: '{{ service_name }}'
+    start_mode: auto
+    state: started

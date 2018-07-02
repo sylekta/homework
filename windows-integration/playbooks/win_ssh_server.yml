@@ -1,0 +1,18 @@
+---
+- name: install_ssh_server
+  hosts: windows
+  gather_facts: true
+  become: true
+  tasks:
+
+    - name:
+      include_role:
+        name: win_package_install
+    
+    - name:
+      include_role:
+        name: win_service_config
+    
+    - name:
+      include_role:
+        name: win_firewall
