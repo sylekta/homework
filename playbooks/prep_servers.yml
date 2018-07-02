@@ -1,9 +1,0 @@
-#Calling the custom prep-server role, which copies the repo file and installs httpie to all servers#
-
----
-- name: call prep-server role
-  hosts: all
-  gather_facts: true
-  become: true
-  roles:
-    - {name: prep-server}
