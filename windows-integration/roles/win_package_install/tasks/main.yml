@@ -4,4 +4,4 @@
     name: '{{ item }}'
     state: present
     params: '{{ parameters }}'
-  loop: '{{ package_list }}'
+  loop: '{{ package_name }}'
