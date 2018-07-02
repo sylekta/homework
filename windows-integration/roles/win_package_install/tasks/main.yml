@@ -1,7 +1,7 @@
 ---
 - name: Install packages
   win_chocolatey:
-    name: '{{ item }}'
+    name: '{{ package_name }}'
     state: present
     params: '{{ parameters }}'
-  loop: '{{ package_name }}'
+  #loop: '{{ package_name }}'
