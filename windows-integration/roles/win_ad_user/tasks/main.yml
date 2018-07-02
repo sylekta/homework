@@ -3,7 +3,7 @@
   win_domain_group:
     name: '{{ user_info.group_name }}'
     scope: global
-  loops: '{{ user_info }}'
+  loop: '{{ user_info }}'
 
 - name: create users
   win_domain_user:
