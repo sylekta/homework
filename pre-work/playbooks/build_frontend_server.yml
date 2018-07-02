@@ -1,0 +1,10 @@
+---
+- name: build_frontend_server
+  hosts: frontends
+  gather_facts: true
+  become: true
+  roles:
+  - {name: geerlingguy.haproxy}
+
+  
+    

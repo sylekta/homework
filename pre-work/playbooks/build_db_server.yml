@@ -1,0 +1,10 @@
+#Using Community role to install PostgreSQL#
+
+---
+- name: build_db_server
+  hosts: appdbs
+  gather_facts: true
+  become: true
+  roles:
+      - {name: geerlingguy.postgresql}
+

@@ -1,0 +1,42 @@
+---
+- name: test_reboot_servers
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: reboot host
+      shell: sleep 5 && reboot
+      async: 1
+      poll: 0
+      become: true
+      tags:
+        - test_reboot
+
+    - name: waiting for server booting up
+      wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 300
+      tags:
+        - test_reboot
+
+- name: test_frontend_server
+  hosts: support
+  gather_facts: false
+  become: true
+
+  tasks:
+
+    - name: check front end for string
+      uri:
+        url:  "http://frontend.{{GUID}}{{domain}}"
+        return_content: yes
+      register: result
+      until:  string_check in result.content
+      retries: 20
+      delay: 1
+      tags:
+        - test_frontend
+
