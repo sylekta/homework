@@ -1,0 +1,17 @@
+---
+- name: ensure groups exist
+  win_domain_group:
+    name: '{{ user_info.group_name }}'
+    scope: global
+  loops: '{{ user_info }}'
+
+- name: create users
+  win_domain_user:
+    name: '{{ user_info.name }}'
+    firstname: '{{ user_info.firstname }}'
+    surname: '{{ user_info.surname }}'
+    password: '{{ user_info.password }}'
+    email: '{{ user_info.email }}'
+    state: present
+    groups: '{{ user_info.group_name }}'
+  loop: '{{ user_info }}'

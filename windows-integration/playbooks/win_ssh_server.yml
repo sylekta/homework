@@ -5,14 +5,14 @@
   become: true
   tasks:
 
-    - name:
+    - name: install shh server
       include_role:
         name: win_package_install
     
-    - name:
+    - name: set ssh server to auto start
       include_role:
         name: win_service_config
     
-    - name:
+    - name: create firewall rule for ssh
       include_role:
         name: win_firewall
