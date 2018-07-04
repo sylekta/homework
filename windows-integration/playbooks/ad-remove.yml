@@ -1,0 +1,9 @@
+- hosts: windows
+  gather_facts: no
+  tasks:
+  - win_domain_controller:
+      domain_admin_user: "{{ad_admin_user}}"
+      domain_admin_password: "{{ansible_password}}"
+      local_admin_password: "{{ansible_password}}"
+      state: member_server
+      

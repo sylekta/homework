@@ -16,7 +16,4 @@
   win_reboot:
   when: promoted is changed
 
-- name: wait for server to come back
-  wait_for_connection:
-
 
