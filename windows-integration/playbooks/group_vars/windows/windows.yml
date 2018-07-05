@@ -1,0 +1,23 @@
+---
+#ad vars#
+GUID: c51d
+ad_domain_name: "ad1.{{GUID}}.example.opentlc.com"
+ad_safe_mode_password: "{{ansible_password}}"
+ad_admin_user: "admin@{{ ad_domain_name}}"
+ad_admin_password: "{{ansible_password}}"
+
+
+#ad users#
+user_info: 
+- {name: james, firstname: James, surname: Jockey, password: redhat@123, email: 'james@ad1.${guid}.example.opentlc.com', group_name: dev, group_scope: domainlocal, }
+- {name: bill, firstname: Bill, surname: Gates, password: redhat@123, email: 'bill@ad1.${guid}.example.opentlc.com', group_name: dev, group_scope: domainlocal, }
+- {name: mickey, firstname: Mickey, surname: Mouse, password: redhat@123, email: 'mickey@ad1.${guid}.example.opentlc.com', group_name: qa, group_scope: domainlocal, }
+- {name: donald, firstname: Donald, surname: Duck, password: redhat@123, email: 'donald@ad1.${guid}.example.opentlc.com', group_name: qa, group_scope: domainlocal, }
+
+
+#ssh vars
+package_name: openssh
+parameters: /SSHServerFeature
+service_name: SSHD
+local_port: 22
+protocol_name: tcp
