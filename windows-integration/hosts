@@ -1,16 +1,11 @@
-[GenericExample:vars]
+[all:vars]
+GUID=c51d
 ###########################################################################
 ### Ansible Vars
 ###########################################################################
 timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user
-
-
-[GenericExample:children]
-towers
-windows
-support
 
 [towers]
 ## These are the towers
