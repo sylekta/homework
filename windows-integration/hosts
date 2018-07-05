@@ -1,5 +1,5 @@
-[all:vars]
-GUID=c51d
+[GenericExample:vars]
+
 ###########################################################################
 ### Ansible Vars
 ###########################################################################
@@ -7,22 +7,28 @@ timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user
 
+
+[GenericExample:children]
+towers
+windows
+support
+
 [towers]
 ## These are the towers
-tower1."{{GUID}}".internal public_host_name=tower1."{{GUID}}".example.opentlc.com ssh_host=ec2-18-209-120-163.compute-1.amazonaws.com
-tower2."{{GUID}}".internal public_host_name=tower2."{{GUID}}".example.opentlc.com ssh_host=ec2-18-210-43-143.compute-1.amazonaws.com
-tower3."{{GUID}}".internal public_host_name=tower3."{{GUID}}".example.opentlc.com ssh_host=ec2-18-210-94-79.compute-1.amazonaws.com
+tower1.c51d.internal public_host_name=tower1.c51d.example.opentlc.com ssh_host=ec2-18-210-159-1.compute-1.amazonaws.com
+tower2.c51d.internal public_host_name=tower2.c51d.example.opentlc.com ssh_host=ec2-18-204-244-35.compute-1.amazonaws.com
+tower3.c51d.internal public_host_name=tower3.c51d.example.opentlc.com ssh_host=ec2-52-87-54-0.compute-1.amazonaws.com
 
 
 [windows]
 ## These are the activedirectory servers
-ad1."{{GUID}}".internal ssh_host=ad1."{{GUID}}".example.opentlc.com ansible_password=jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==
+ad1.c51d.internal ssh_host=ad1.c51d.example.opentlc.com ansible_password=jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==
 
 
 ## These are the supporthosts
 [support]
-support1."{{GUID}}".internal ssh_host=ec2-54-83-73-29.compute-1.amazonaws.com
-support2."{{GUID}}".internal ssh_host=ec2-54-80-154-177.compute-1.amazonaws.com
+support1.c51d.internal ssh_host=ec2-34-231-16-147.compute-1.amazonaws.com
+support2.c51d.internal ssh_host=ec2-35-153-88-133.compute-1.amazonaws.com
 
 [windows:vars]
 ansible_connection=winrm
@@ -33,4 +39,3 @@ ansible_ssh_user=Administrator
 ansible_winrm_server_cert_validation=ignore
 ansible_winrm_transport=basic
 ansible_become=false
-
