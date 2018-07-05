@@ -8,7 +8,7 @@
 
   tasks:
     - name: test
-      raw: "nltest /dclist:'{{ ad_domain_name }}'"
+      raw: "nltest /dclist:"
       register: result
 
     - debug: msg="{{result}}"
